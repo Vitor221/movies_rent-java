@@ -1,8 +1,10 @@
 package com.rentmovies.movies.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,16 +16,21 @@ public class Movie implements Serializable {
     private Long id;
     private String name;
     private String description;
-    private Double price;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date launchDay;
+    private Double priceRent;
+    private Double priceBuy;
 
     public Movie() {
     }
 
-    public Movie(Long id, String name, String description, Double price) {
+    public Movie(Long id, String name, String description, Date launchDay, Double priceRent, Double priceBuy) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.price = price;
+        this.launchDay = launchDay;
+        this.priceRent = priceRent;
+        this.priceBuy = priceBuy;
     }
 
     public Long getId() {
@@ -50,12 +57,28 @@ public class Movie implements Serializable {
         this.description = description;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getPriceBuy() {
+        return priceBuy;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPriceBuy(Double priceBuy) {
+        this.priceBuy = priceBuy;
+    }
+
+    public Double getPriceRent() {
+        return priceRent;
+    }
+
+    public void setPriceRent(Double priceRent) {
+        this.priceRent = priceRent;
+    }
+
+    public Date getLaunchDay() {
+        return launchDay;
+    }
+
+    public void setLaunchDay(Date launchDay) {
+        this.launchDay = launchDay;
     }
 
     @Override
@@ -70,4 +93,5 @@ public class Movie implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

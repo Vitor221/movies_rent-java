@@ -3,6 +3,7 @@ package com.rentmovies.movies.controller;
 import com.rentmovies.movies.entities.Movie;
 import com.rentmovies.movies.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -29,7 +30,7 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<Movie> create(@RequestBody Movie movie) {
+    public ResponseEntity<Movie> create(@RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") Movie movie) {
         Movie _movie = service.createMovie(movie);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(movie.getId()).toUri();
