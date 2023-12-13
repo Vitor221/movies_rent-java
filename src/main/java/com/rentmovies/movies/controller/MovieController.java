@@ -1,6 +1,8 @@
 package com.rentmovies.movies.controller;
 
+import com.rentmovies.movies.entities.Client;
 import com.rentmovies.movies.entities.Movie;
+import com.rentmovies.movies.services.ClientService;
 import com.rentmovies.movies.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,6 +19,9 @@ import java.util.List;
 public class MovieController {
     @Autowired
     private MovieService service;
+
+    @Autowired
+    private ClientService clientService;
 
     @GetMapping
     public ResponseEntity<List<Movie>> findAll() {
@@ -30,7 +36,7 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<Movie> create(@RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") Movie movie) {
+    public ResponseEntity<Movie> create(@RequestBody Movie movie) {
         Movie _movie = service.createMovie(movie);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(movie.getId()).toUri();

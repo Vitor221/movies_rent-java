@@ -1,5 +1,6 @@
 package com.rentmovies.movies.services;
 
+import com.rentmovies.movies.entities.Client;
 import com.rentmovies.movies.entities.Movie;
 import com.rentmovies.movies.exception.BadRequestException;
 import com.rentmovies.movies.repositories.MovieRepository;

@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_movies")
@@ -20,6 +22,9 @@ public class Movie implements Serializable {
     private Date launchDay;
     private Double priceRent;
     private Double priceBuy;
+
+    @ManyToMany(mappedBy = "movies")
+    private Set<Client> clients = new HashSet<>();
 
     public Movie() {
     }
@@ -81,6 +86,10 @@ public class Movie implements Serializable {
         this.launchDay = launchDay;
     }
 
+    public Set<Client> getClients() {
+        return clients;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,5 +102,4 @@ public class Movie implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }
