@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
@@ -38,6 +40,7 @@ public class MovieService {
     }
 
     public Movie update(Long id, Movie movie) {
+
         repository.findById(id).ifPresentOrElse((moviePresent) -> {
             movie.setId(id);
             repository.save(movie);
