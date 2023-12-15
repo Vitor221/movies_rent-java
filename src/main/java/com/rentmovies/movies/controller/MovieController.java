@@ -1,17 +1,14 @@
 package com.rentmovies.movies.controller;
 
-import com.rentmovies.movies.entities.Client;
 import com.rentmovies.movies.entities.Movie;
 import com.rentmovies.movies.services.ClientService;
 import com.rentmovies.movies.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,6 +30,12 @@ public class MovieController {
     public ResponseEntity<Movie> findById(@PathVariable Long id) {
         Movie movie = service.findById(id);
         return ResponseEntity.ok().body(movie);
+    }
+
+    @GetMapping("/category/{code}")
+    public ResponseEntity<List<Movie>> findByCategory(@PathVariable int code) {
+        List<Movie> list = service.findByCategory(code);
+        return ResponseEntity.ok().body(list);
     }
 
     @PostMapping

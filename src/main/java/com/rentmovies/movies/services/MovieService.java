@@ -2,6 +2,7 @@ package com.rentmovies.movies.services;
 
 import com.rentmovies.movies.entities.Client;
 import com.rentmovies.movies.entities.Movie;
+import com.rentmovies.movies.entities.enums.CategoryMovie;
 import com.rentmovies.movies.exception.BadRequestException;
 import com.rentmovies.movies.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,10 @@ public class MovieService {
 
     public List<Movie> findAll() {
         return repository.findAll();
+    }
+
+    public List<Movie> findByCategory(int code) {
+        return repository.buscarByCategory(code);
     }
 
     public void deleteMovie(Long id) {
