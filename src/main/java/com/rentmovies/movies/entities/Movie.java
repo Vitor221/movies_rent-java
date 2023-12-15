@@ -1,6 +1,7 @@
 package com.rentmovies.movies.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rentmovies.movies.entities.enums.CategoryMovie;
 import jakarta.persistence.*;
 
@@ -90,6 +91,7 @@ public class Movie implements Serializable {
         this.launchDay = launchDay;
     }
 
+    @JsonIgnore
     public Set<Client> getClients() {
         return clients;
     }

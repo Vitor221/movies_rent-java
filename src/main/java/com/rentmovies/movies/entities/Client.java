@@ -54,7 +54,6 @@ public class Client {
         this.email = email;
     }
 
-    @JsonIgnore
     public Set<Movie> getMovies() {
         return movies;
     }

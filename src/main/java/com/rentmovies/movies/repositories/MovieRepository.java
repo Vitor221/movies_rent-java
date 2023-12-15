@@ -9,4 +9,6 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("FROM Movie WHERE categoryInt = :code")
     List<Movie> buscarByCategory(int code);
+
+//    List<Movie> findByCategoryInt(Integer code);
 }
